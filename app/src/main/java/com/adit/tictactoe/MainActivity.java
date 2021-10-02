@@ -3,6 +3,8 @@ package com.adit.tictactoe;
 import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Arrays;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -81,9 +83,7 @@ public class MainActivity extends AppCompatActivity {
     {
         gameActive=true;
         activePlayer=0;
-        for(int i=0;i<gameState.length;i++){
-            gameState[i]=2;
-        }
+        Arrays.fill(gameState, 2);
         ((ImageView)findViewById(R.id.imageView0)).setImageResource(0);
         ((ImageView)findViewById(R.id.imageView1)).setImageResource(0);
         ((ImageView)findViewById(R.id.imageView2)).setImageResource(0);
