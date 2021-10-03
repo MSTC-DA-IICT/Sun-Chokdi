@@ -8,21 +8,26 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.adit.tictactoe.dialogs.SelectPlayerDialog;
+
 public class MainActivity extends AppCompatActivity {
-     // Player Representation:
+    SelectPlayerDialog dialog;
+    // Player Representation:
     //0 - X
     //1 - O
-    int activePlayer=0;
+    static public int activePlayer=-1;
     boolean gameActive=true;
     int[] gameState={2,2,2,2,2,2,2,2,2};
     // State meanings:
     // 0-X      1-O      2-Null
     int winPositions[][]={{0,1,2},{3,4,5},{6,7,8},
-                          {0,3,6},{1,4,7},{2,5,8},
-                          {0,4,8},{2,4,6}};
+            {0,3,6},{1,4,7},{2,5,8},
+            {0,4,8},{2,4,6}};
     public void playerTap(View view)
     {
-
+        if(activePlayer==-1){
+            dialog.show();
+        }
         ImageView img;              // here ImageView is the type of variable img
         img = (ImageView) view;
         int tappedImage = Integer.parseInt(img.getTag().toString());
@@ -79,8 +84,9 @@ public class MainActivity extends AppCompatActivity {
     }
     public void gameReset(View view)
     {
+        dialog.show();
         gameActive=true;
-        activePlayer=0;
+        activePlayer=-1;
         for(int i=0;i<gameState.length;i++){
             gameState[i]=2;
         }
@@ -98,5 +104,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        dialog = new SelectPlayerDialog(this);
+        dialog.show();
     }
 }
