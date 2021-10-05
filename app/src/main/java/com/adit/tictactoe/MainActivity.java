@@ -3,6 +3,8 @@ package com.adit.tictactoe;
 import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Arrays;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,9 +24,11 @@ public class MainActivity extends AppCompatActivity {
     int[] gameState={2,2,2,2,2,2,2,2,2};
     // State meanings:
     // 0-X      1-O      2-Null
-    int[][] winPositions ={{0,1,2},{3,4,5},{6,7,8},
-                            {0,3,6},{1,4,7},{2,5,8},
-                            {0,4,8},{2,4,6}};
+
+    int[][] winPositions={{0,1,2},{3,4,5},{6,7,8},
+                          {0,3,6},{1,4,7},{2,5,8},
+                          {0,4,8},{2,4,6}};
+
     public void playerTap(View view)
     {
         if(activePlayer==-1){
