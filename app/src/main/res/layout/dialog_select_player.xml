@@ -13,34 +13,32 @@
         android:textStyle="bold"
         android:textColor="#000"
         android:id="@+id/dialogTitle"/>
-    <EditText
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="X or O"
-        android:id="@+id/confirm_player"
-        android:inputType="text"
-        android:textSize="15sp"/>
+        android:layout_marginTop="15dp">
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textSize="12sp"-->
-<!--            android:textColor="#000"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            android:layout_marginRight="10dp"-->
-<!--            android:text="CANCEL"-->
-<!--            android:id="@+id/dialogCancel"/>-->
-
-        <TextView
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="#000"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="80dp"
-            android:text="CONFIRM"
-            android:id="@+id/dialogConfirm"/>
+            android:backgroundTint="@color/colorPrimary"
+            android:text="X"
+            android:textColor="#FFFFFF"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/btn_X"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorAccent"
+            android:text="O"
+            android:textColor="#FFFFFF"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/btn_O"/>
+
+
+
+    </RelativeLayout>
 
 </LinearLayout>
