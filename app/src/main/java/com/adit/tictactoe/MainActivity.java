@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.adit.tictactoe.dialogs.SelectPlayerDialog;
 
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
     SelectPlayerDialog dialog;
     // Player Representation:
@@ -20,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
     int[] gameState={2,2,2,2,2,2,2,2,2};
     // State meanings:
     // 0-X      1-O      2-Null
-    int winPositions[][]={{0,1,2},{3,4,5},{6,7,8},
-            {0,3,6},{1,4,7},{2,5,8},
-            {0,4,8},{2,4,6}};
+    int[][] winPositions ={{0,1,2},{3,4,5},{6,7,8},
+                            {0,3,6},{1,4,7},{2,5,8},
+                            {0,4,8},{2,4,6}};
     public void playerTap(View view)
     {
         if(activePlayer==-1){
@@ -87,9 +89,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
         gameActive=true;
         activePlayer=-1;
-        for(int i=0;i<gameState.length;i++){
-            gameState[i]=2;
-        }
+        Arrays.fill(gameState,2);
         ((ImageView)findViewById(R.id.imageView0)).setImageResource(0);
         ((ImageView)findViewById(R.id.imageView1)).setImageResource(0);
         ((ImageView)findViewById(R.id.imageView2)).setImageResource(0);
