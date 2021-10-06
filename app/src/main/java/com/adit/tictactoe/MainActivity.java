@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.adit.tictactoe.dialogs.SelectPlayerDialog;
 
+
+import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
     SelectPlayerDialog dialog;
     // Player Representation:
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     int[] gameState={2,2,2,2,2,2,2,2,2};
     // State meanings:
     // 0-X      1-O      2-Null
+
     int[][] winPositions={{0,1,2},{3,4,5},{6,7,8},
                           {0,3,6},{1,4,7},{2,5,8},
                           {0,4,8},{2,4,6}};
