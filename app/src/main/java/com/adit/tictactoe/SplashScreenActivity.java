@@ -15,6 +15,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     ImageView backgroundImg;
     Animation slideAnim;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         );
 
         backgroundImg = findViewById(R.id.logo_image);
-        slideAnim = AnimationUtils.loadAnimation(this,R.anim.slide_anim);
+        slideAnim = AnimationUtils.loadAnimation(this, R.anim.slide_anim);
         backgroundImg.startAnimation(slideAnim);
 
         //This is a seperate "Thread" for handling animation and pass to MainActivity
@@ -40,12 +41,13 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         //We run the animation for 3000 milliseconds.
         Handler handler = new Handler();
-        handler.postDelayed(r,3000);
+        handler.postDelayed(r, 3000);
     }
 
-    private void intentFunc(){
-        Intent intent = new Intent(this,MainActivity.class);
+    private void intentFunc() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
+
 }

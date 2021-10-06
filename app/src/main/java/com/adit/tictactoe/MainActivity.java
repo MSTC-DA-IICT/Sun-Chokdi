@@ -4,16 +4,18 @@ import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
-
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.adit.tictactoe.dialogs.SelectPlayerDialog;
 
-import java.util.Arrays;
 
+import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
     SelectPlayerDialog dialog;
     // Player Representation:
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         img = (ImageView) view;
         int tappedImage = Integer.parseInt(img.getTag().toString());
         if(!gameActive){
-            gameReset(view);
+            gameReset();
         }
         else
         {
@@ -88,12 +90,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    public void gameReset(View view)
+    public void gameReset()
     {
         dialog.show();
         gameActive=true;
+
         activePlayer=-1;
         Arrays.fill(gameState,2);
+
         ((ImageView)findViewById(R.id.imageView0)).setImageResource(0);
         ((ImageView)findViewById(R.id.imageView1)).setImageResource(0);
         ((ImageView)findViewById(R.id.imageView2)).setImageResource(0);
@@ -110,5 +114,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         dialog = new SelectPlayerDialog(this);
         dialog.show();
+    }
+
+    //To handle the creation of menu for resetting game
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main_activity,menu);
+        return true;
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onOptionsItemSelected( MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_reset_game:
+                gameReset();
+                // Toast.makeText(this, "Reset Game Confirmed", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

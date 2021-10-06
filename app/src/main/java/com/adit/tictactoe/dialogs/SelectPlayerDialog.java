@@ -59,4 +59,6 @@ public class SelectPlayerDialog extends Dialog implements View.OnClickListener {
         }
     }
 
+
 }
+
