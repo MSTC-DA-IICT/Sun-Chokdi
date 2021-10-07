@@ -21,7 +21,11 @@ import com.adit.tictactoe.R;
 
 import java.util.List;
 
-import static com.adit.tictactoe.MainActivity.activePlayer;
+import static com.adit.tictactoe.MainActivity.activePlayerMp;
+import static com.adit.tictactoe.SinglePlayerActivity.activePlayerSp;
+import static com.adit.tictactoe.SinglePlayerActivity.initChoose;
+import static com.adit.tictactoe.WelcomeScreenActivity.isSinglePlayer;
+
 
 public class SelectPlayerDialog extends Dialog implements View.OnClickListener {
 
@@ -47,11 +51,19 @@ public class SelectPlayerDialog extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_X:
-                activePlayer = 0;
+                if(isSinglePlayer) {
+                    activePlayerSp = 0;
+                    initChoose = 'x';
+                }
+                else activePlayerMp = 0;
                 dismiss();
                 break;
             case R.id.btn_O:
-                activePlayer = 1;
+                if(isSinglePlayer){
+                    activePlayerSp = 1;
+                    initChoose = 'o';
+                }
+                else activePlayerMp = 1;
                 dismiss();
                 break;
             default:
