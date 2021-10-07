@@ -29,7 +29,8 @@ import static com.adit.tictactoe.WelcomeScreenActivity.isSinglePlayer;
 
 public class SelectPlayerDialog extends Dialog implements View.OnClickListener {
 
-    private Button btnX,btnO;
+    private Button btnX, btnO;
+
     public SelectPlayerDialog(@NonNull Context context) {
         super(context);
     }
@@ -49,21 +50,19 @@ public class SelectPlayerDialog extends Dialog implements View.OnClickListener {
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_X:
-                if(isSinglePlayer) {
+                if (isSinglePlayer) {
                     activePlayerSp = 0;
                     initChoose = 'x';
-                }
-                else activePlayerMp = 0;
+                } else activePlayerMp = 0;
                 dismiss();
                 break;
             case R.id.btn_O:
-                if(isSinglePlayer){
+                if (isSinglePlayer) {
                     activePlayerSp = 1;
                     initChoose = 'o';
-                }
-                else activePlayerMp = 1;
+                } else activePlayerMp = 1;
                 dismiss();
                 break;
             default:

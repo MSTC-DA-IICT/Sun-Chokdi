@@ -5,7 +5,6 @@
         android:id="@+id/menu_reset_game"
         android:title="Reset Game"/>
 
-
     <item
         android:id="@+id/menu_game_select_screen"
         android:title="Go to Game Selection Screen"/>
