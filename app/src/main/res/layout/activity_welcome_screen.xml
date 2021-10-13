@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WelcomeScreenActivity">
+
+    <TextView
+        android:id="@+id/ws_tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello Player!"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/ws_tv_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ws_tv_1"
+        android:layout_centerInParent="true"
+        android:textSize="30sp"
+        android:layout_marginTop="20dp"
+        android:text="Welcome to Sun-Chokdi"/>
+
+    <TextView
+        android:id="@+id/ws_tv_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ws_tv_2"
+        android:layout_centerInParent="true"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        android:layout_marginTop="20dp"
+        android:text="Select a type of game from below :"/>
+
+    <Button
+        android:id="@+id/ws_btn_sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:textColor="#ffffff"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="Single Player  ☠️(Against Computer)"/>
+
+    <Button
+        android:id="@+id/ws_btn_mp"
+        android:layout_below="@id/ws_btn_sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:textColor="#ffffff"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="Multi Player 😈 (Against Real Player)"/>
+
+</RelativeLayout>
