@@ -1,10 +1,11 @@
 package com.adit.tictactoe;
 
-import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,13 +17,12 @@ import android.widget.TextView;
 import com.adit.tictactoe.dialogs.SelectPlayerDialog;
 
 
-import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
     SelectPlayerDialog dialog;
     // Player Representation:
     //0 - X
     //1 - O
-    static public int activePlayerMp=-1;
+    static public int activePlayerMp=0;
     boolean gameActive=true;
     int[] gameState={2,2,2,2,2,2,2,2,2};
     // State meanings:
@@ -71,41 +71,62 @@ public class MainActivity extends AppCompatActivity {
             }
             if(draw)
             {
-                TextView status = findViewById(R.id.status);
-                status.setText("Game Ended in a Draw !!");
-                gameActive=false;
+                new AlertDialog.Builder(this)
+                        .setTitle("The game ended with a draw!")
+                        .setMessage("Play another game?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                gameReset();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .setCancelable(false)
+                        .show();
+
             }
+
 
             // win check
             for (int[] winPosition : winPositions) {
-				if (gameState[winPosition[0]] == gameState[winPosition[1]]
-						&& gameState[winPosition[1]] == gameState[winPosition[2]] && gameState[winPosition[0]] != 2) {
-					String winner = "";
-                    TextView status = findViewById(R.id.status);
-					//check if X is the winner
-					if (gameState[winPosition[0]] == 0) {
-						winner = "X";
-					} else {
-						winner = "O";
-					}
-					//create an alert dialog notifying about the win
-					new AlertDialog.Builder(getApplicationContext())
-					.setTitle(winner.concat(" won !! Game Over"))
-					.setMessage("Play another game?")
-					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-	    				public void onClick(DialogInterface dialog, int which) { 
-    						Intent intent = new Intent(this,WelcomeScreenActivity.class);
-                			startActivity(intent);
-        					}
-    						})
-    				.setNegativeButton(android.R.string.no, null)
-    				.setIcon(android.R.drawable.ic_dialog_alert)
-    				.show();
-                    gameActive = false;
+                if (gameState[winPosition[0]] == gameState[winPosition[1]]
+                        && gameState[winPosition[1]] == gameState[winPosition[2]] && gameState[winPosition[0]] != 2) {
+                    String winner = "";
+                    //check if X is the winner
+                    if (gameState[winPosition[0]] == 0) {
+                        winner = "X";
+                    } else {
+                        winner = "O";
+                    }
+                    //create an alert dialog notifying about the win
+
+                    new AlertDialog.Builder(this)
+                            .setTitle(winner.concat(" won !! Game Over"))
+                            .setMessage("Play another game?")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    gameReset();
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            })
+                            .setCancelable(false)
+                            .show();
+
                 }
             }
         }
     }
+
+
     public void gameReset()
     {
         dialog.show();

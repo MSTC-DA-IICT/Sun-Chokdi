@@ -3,6 +3,8 @@ package com.adit.tictactoe;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -106,22 +108,56 @@ public class SinglePlayerActivity extends AppCompatActivity {
             }
             if(draw)
             {
-                TextView status = findViewById(R.id.status);
-                status.setText("Game Ended in a Draw !!");
-                gameActive=false;
-            }
+                    new AlertDialog.Builder(this)
+                            .setTitle("The game ended with a draw!")
+                            .setMessage("Play another game?")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    gameReset();
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            })
+                            .setCancelable(false)
+                            .show();
+
+                }
+
 
             // win check
             for (int[] winPosition : winPositions) {
-                if (gameState[winPosition[0]] == gameState[winPosition[1]] && gameState[winPosition[1]] == gameState[winPosition[2]] && gameState[winPosition[0]] != 2) {
+                if (gameState[winPosition[0]] == gameState[winPosition[1]]
+                        && gameState[winPosition[1]] == gameState[winPosition[2]] && gameState[winPosition[0]] != 2) {
+                    String winner = "";
+                    //check if X is the winner
                     if (gameState[winPosition[0]] == 0) {
-                        TextView status = findViewById(R.id.status);
-                        status.setText("X won !! Game Over");
+                        winner = "X";
                     } else {
-                        TextView status = findViewById(R.id.status);
-                        status.setText("O won !! Game Over");
+                        winner = "O";
                     }
-                    gameActive = false;
+                    //create an alert dialog notifying about the win
+
+                    new AlertDialog.Builder(this)
+                            .setTitle(winner.concat(" won !! Game Over"))
+                            .setMessage("Play another game?")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    gameReset();
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            })
+                            .setCancelable(false)
+                            .show();
+
                 }
             }
         }
