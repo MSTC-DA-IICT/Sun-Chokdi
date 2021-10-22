@@ -78,14 +78,29 @@ public class MainActivity extends AppCompatActivity {
 
             // win check
             for (int[] winPosition : winPositions) {
-                if (gameState[winPosition[0]] == gameState[winPosition[1]] && gameState[winPosition[1]] == gameState[winPosition[2]] && gameState[winPosition[0]] != 2) {
-                    if (gameState[winPosition[0]] == 0) {
-                        TextView status = findViewById(R.id.status);
-                        status.setText("X won !! Game Over");
-                    } else {
-                        TextView status = findViewById(R.id.status);
-                        status.setText("O won !! Game Over");
-                    }
+				if (gameState[winPosition[0]] == gameState[winPosition[1]]
+						&& gameState[winPosition[1]] == gameState[winPosition[2]] && gameState[winPosition[0]] != 2) {
+					String winner = "";
+                    TextView status = findViewById(R.id.status);
+					//check if X is the winner
+					if (gameState[winPosition[0]] == 0) {
+						winner = "X";
+					} else {
+						winner = "O";
+					}
+					//create an alert dialog notifying about the win
+					new AlertDialog.Builder(getApplicationContext())
+					.setTitle(winner.concat(" won !! Game Over"))
+					.setMessage("Play another game?")
+					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+	    				public void onClick(DialogInterface dialog, int which) { 
+    						Intent intent = new Intent(this,WelcomeScreenActivity.class);
+                			startActivity(intent);
+        					}
+    						})
+    				.setNegativeButton(android.R.string.no, null)
+    				.setIcon(android.R.drawable.ic_dialog_alert)
+    				.show();
                     gameActive = false;
                 }
             }
