@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Arrays;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     int[][] winPositions={{0,1,2},{3,4,5},{6,7,8},
                           {0,3,6},{1,4,7},{2,5,8},
                           {0,4,8},{2,4,6}};
+    int[] winLines={R.drawable.win_1, R.drawable.win_2, R.drawable.win_3,
+                    R.drawable.win_4, R.drawable.win_5, R.drawable.win_6,
+                    R.drawable.win_7, R.drawable.win_8};
 
     public void playerTap(View view)
     {
@@ -77,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             // win check
+            int win_pos_count = 0;
             for (int[] winPosition : winPositions) {
                 if (gameState[winPosition[0]] == gameState[winPosition[1]] && gameState[winPosition[1]] == gameState[winPosition[2]] && gameState[winPosition[0]] != 2) {
                     if (gameState[winPosition[0]] == 0) {
@@ -86,8 +91,10 @@ public class MainActivity extends AppCompatActivity {
                         TextView status = findViewById(R.id.status);
                         status.setText("O won !! Game Over");
                     }
+                    ((ImageView)findViewById(R.id.winLine)).setImageResource(winLines[win_pos_count]);
                     gameActive = false;
                 }
+                win_pos_count++;
             }
         }
     }
@@ -95,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
     {
         dialog.show();
         gameActive=true;
-
         activePlayerMp=-1;
         Arrays.fill(gameState,2);
 
@@ -108,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         ((ImageView)findViewById(R.id.imageView6)).setImageResource(0);
         ((ImageView)findViewById(R.id.imageView7)).setImageResource(0);
         ((ImageView)findViewById(R.id.imageView8)).setImageResource(0);
+        ((ImageView)findViewById(R.id.winLine)).setImageResource(0);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
